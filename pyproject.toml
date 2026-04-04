@@ -4,11 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "thonk"
-version = "1.0.1"
+version = "1.0.2"
 description = "Generate randomized thinking emoji images"
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = ["Pillow>=9.0"]
+
+[project.urls]
+Repository = "https://github.com/keegan-t/thonk"
 
 [tool.setuptools.packages.find]
 include = ["thonk*"]
