@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "thonk"
+version = "1.0.0"
+description = "Generate randomized thinking emoji images"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = ["Pillow>=9.0"]
+
+[tool.setuptools.packages.find]
+include = ["thonk*"]
