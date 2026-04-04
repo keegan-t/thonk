@@ -2,7 +2,7 @@
 
 # Thonk
 
-<img src="assets/comparison.png" width="400"/>
+<img src="https://raw.githubusercontent.com/keegan-t/thonk/main/assets/comparison.png" width="400"/>
 
 Tired of the same old thinking emoji? Here's an infinite supply of new ones.
 
