@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thonk Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/icon.png">
+</head>
+<body>
+<div class="header">
+    <button onclick="randomize()">Randomize</button>
+    <h1>Thonk Generator</h1>
+    <button onclick="copyToClipboard()">Copy</button>
+</div>
+<div class="row">
+    <div class="sliders">
+        <div class="sliders-label">General</div>
+        <div class="slider-row">
+            <label>Seed</label>
+            <input type="text" id="seedInput" placeholder="Seed" oninput="generate()" style="flex:1; padding:3px 6px; border-radius:4px; border:1px solid #444; background:#2a2a2a; color:#eee; font-size:0.85rem;"/>
+            <span class="value" style="width:36px;"></span>
+            <button class="lock-btn" data-name="seedInput" onclick="toggleLock('seedInput')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>Face spikiness</label>
+            <input type="range" id="face_spikiness" min="0" max="1" step="0.01" oninput="onSlider('face_spikiness', this)"/>
+            <span class="value" id="face_spikiness-val">rng</span>
+            <button class="lock-btn" data-name="face_spikiness" onclick="toggleLock('face_spikiness')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>Face points</label>
+            <input type="range" id="face_point_count" min="6" max="18" step="1" oninput="onSlider('face_point_count', this)"/>
+            <span class="value" id="face_point_count-val">rng</span>
+            <button class="lock-btn" data-name="face_point_count" onclick="toggleLock('face_point_count')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>Eye size</label>
+            <input type="range" id="eye_size" min="20" max="50" step="1" oninput="onSlider('eye_size', this)"/>
+            <span class="value" id="eye_size-val">rng</span>
+            <button class="lock-btn" data-name="eye_size" onclick="toggleLock('eye_size')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>Eye spikiness</label>
+            <input type="range" id="eye_spikiness" min="0" max="0.5" step="0.01" oninput="onSlider('eye_spikiness', this)"/>
+            <span class="value" id="eye_spikiness-val">rng</span>
+            <button class="lock-btn" data-name="eye_spikiness" onclick="toggleLock('eye_spikiness')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>Eye points</label>
+            <input type="range" id="eye_point_count" min="4" max="8" step="1" oninput="onSlider('eye_point_count', this)"/>
+            <span class="value" id="eye_point_count-val">rng</span>
+            <button class="lock-btn" data-name="eye_point_count" onclick="toggleLock('eye_point_count')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>Mood</label>
+            <input type="range" id="mood" min="0" max="4" step="1" oninput="onSlider('mood', this)"/>
+            <span class="value" id="mood-val">rng</span>
+            <button class="lock-btn" data-name="mood" onclick="toggleLock('mood')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>Mouth width</label>
+            <input type="range" id="mouth_width" min="0" max="1" step="0.01" oninput="onSlider('mouth_width', this)"/>
+            <span class="value" id="mouth_width-val">rng</span>
+            <button class="lock-btn" data-name="mouth_width" onclick="toggleLock('mouth_width')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>Mouth height</label>
+            <input type="range" id="mouth_height" min="0" max="1" step="0.01" oninput="onSlider('mouth_height', this)"/>
+            <span class="value" id="mouth_height-val">rng</span>
+            <button class="lock-btn" data-name="mouth_height" onclick="toggleLock('mouth_height')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>Mouth angle</label>
+            <input type="range" id="mouth_angle" min="-12" max="12" step="1" oninput="onSlider('mouth_angle', this)"/>
+            <span class="value" id="mouth_angle-val">rng</span>
+            <button class="lock-btn" data-name="mouth_angle" onclick="toggleLock('mouth_angle')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>Finger length</label>
+            <input type="range" id="finger_length" min="175" max="225" step="1" oninput="onSlider('finger_length', this)"/>
+            <span class="value" id="finger_length-val">rng</span>
+            <button class="lock-btn" data-name="finger_length" onclick="toggleLock('finger_length')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>Hand angle</label>
+            <input type="range" id="hand_angle" min="-30" max="30" step="1" oninput="onSlider('hand_angle', this)"/>
+            <span class="value" id="hand_angle-val">rng</span>
+            <button class="lock-btn" data-name="hand_angle" onclick="toggleLock('hand_angle')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>Hand size</label>
+            <input type="range" id="hand_size" min="0.4" max="1" step="0.01" oninput="onSlider('hand_size', this)"/>
+            <span class="value" id="hand_size-val">rng</span>
+            <button class="lock-btn" data-name="hand_size" onclick="toggleLock('hand_size')">🔓</button>
+        </div>
+    </div>
+    <div class="col-thonk">
+        <canvas id="canvas" width="1024" height="1024"></canvas>
+    </div>
+    <div class="sliders">
+        <div class="sliders-label">Eyebrows</div>
+        <div class="slider-row">
+            <label>Unibrow</label>
+            <input type="range" id="unibrow_threshold" min="0" max="200" step="1" oninput="onSlider('unibrow_threshold', this)"/>
+            <span class="value" id="unibrow_threshold-val">rng</span>
+            <button class="lock-btn" data-name="unibrow_threshold" onclick="toggleLock('unibrow_threshold')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>L brow type</label>
+            <input type="range" id="eyebrow_type_l" min="0" max="1" step="1" oninput="onSlider('eyebrow_type_l', this)"/>
+            <span class="value" id="eyebrow_type_l-val">rng</span>
+            <button class="lock-btn" data-name="eyebrow_type_l" onclick="toggleLock('eyebrow_type_l')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>L brow arc</label>
+            <input type="range" id="eyebrow_arc_l" min="-1" max="1" step="0.01" oninput="onSlider('eyebrow_arc_l', this)"/>
+            <span class="value" id="eyebrow_arc_l-val">rng</span>
+            <button class="lock-btn" data-name="eyebrow_arc_l" onclick="toggleLock('eyebrow_arc_l')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>L brow width</label>
+            <input type="range" id="eyebrow_width_l" min="1" max="2.2" step="0.01" oninput="onSlider('eyebrow_width_l', this)"/>
+            <span class="value" id="eyebrow_width_l-val">rng</span>
+            <button class="lock-btn" data-name="eyebrow_width_l" onclick="toggleLock('eyebrow_width_l')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>L brow height</label>
+            <input type="range" id="eyebrow_height_l" min="0" max="1" step="0.01" oninput="onSlider('eyebrow_height_l', this)"/>
+            <span class="value" id="eyebrow_height_l-val">rng</span>
+            <button class="lock-btn" data-name="eyebrow_height_l" onclick="toggleLock('eyebrow_height_l')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>L brow thickness</label>
+            <input type="range" id="eyebrow_thickness_l" min="0.2" max="0.5" step="0.01" oninput="onSlider('eyebrow_thickness_l', this)"/>
+            <span class="value" id="eyebrow_thickness_l-val">rng</span>
+            <button class="lock-btn" data-name="eyebrow_thickness_l" onclick="toggleLock('eyebrow_thickness_l')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>L brow rotation</label>
+            <input type="range" id="eyebrow_rotation_l" min="-30" max="30" step="1" oninput="onSlider('eyebrow_rotation_l', this)"/>
+            <span class="value" id="eyebrow_rotation_l-val">rng</span>
+            <button class="lock-btn" data-name="eyebrow_rotation_l" onclick="toggleLock('eyebrow_rotation_l')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>R brow type</label>
+            <input type="range" id="eyebrow_type_r" min="0" max="1" step="1" oninput="onSlider('eyebrow_type_r', this)"/>
+            <span class="value" id="eyebrow_type_r-val">rng</span>
+            <button class="lock-btn" data-name="eyebrow_type_r" onclick="toggleLock('eyebrow_type_r')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>R brow arc</label>
+            <input type="range" id="eyebrow_arc_r" min="-1" max="1" step="0.01" oninput="onSlider('eyebrow_arc_r', this)"/>
+            <span class="value" id="eyebrow_arc_r-val">rng</span>
+            <button class="lock-btn" data-name="eyebrow_arc_r" onclick="toggleLock('eyebrow_arc_r')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>R brow width</label>
+            <input type="range" id="eyebrow_width_r" min="1" max="2.2" step="0.01" oninput="onSlider('eyebrow_width_r', this)"/>
+            <span class="value" id="eyebrow_width_r-val">rng</span>
+            <button class="lock-btn" data-name="eyebrow_width_r" onclick="toggleLock('eyebrow_width_r')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>R brow height</label>
+            <input type="range" id="eyebrow_height_r" min="0" max="1" step="0.01" oninput="onSlider('eyebrow_height_r', this)"/>
+            <span class="value" id="eyebrow_height_r-val">rng</span>
+            <button class="lock-btn" data-name="eyebrow_height_r" onclick="toggleLock('eyebrow_height_r')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>R brow thickness</label>
+            <input type="range" id="eyebrow_thickness_r" min="0.2" max="0.5" step="0.01" oninput="onSlider('eyebrow_thickness_r', this)"/>
+            <span class="value" id="eyebrow_thickness_r-val">rng</span>
+            <button class="lock-btn" data-name="eyebrow_thickness_r" onclick="toggleLock('eyebrow_thickness_r')">🔓</button>
+        </div>
+        <div class="slider-row">
+            <label>R brow rotation</label>
+            <input type="range" id="eyebrow_rotation_r" min="-30" max="30" step="1" oninput="onSlider('eyebrow_rotation_r', this)"/>
+            <span class="value" id="eyebrow_rotation_r-val">rng</span>
+            <button class="lock-btn" data-name="eyebrow_rotation_r" onclick="toggleLock('eyebrow_rotation_r')">🔓</button>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

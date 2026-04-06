@@ -8,6 +8,14 @@ Tired of the same old thinking emoji? Here's an infinite supply of new ones.
 
 </div>
 
+## Playground
+
+Want to experiment without installing the library? The repository includes an interactive JavaScript playground where you can tweak every parameter and see the results in real time!
+
+[Try it on GitHub Pages →](https://keegan-t.github.io/thonk)
+
+> **Note:** The same seed will produce different images in the playground vs. the Python library.
+
 ## Purpose
 
 Generates unique thinking emojis with completely randomized features.

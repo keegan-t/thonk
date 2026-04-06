@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #1a1a1a;
+    color: #eee;
+    font-family: sans-serif;
+    min-height: 100vh;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+h1 {
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    width: 100%;
+    padding: 16px 0 20px;
+}
+
+.header button {
+    width: 120px;
+}
+
+.row {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.col-thonk {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+input[type="text"] {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background: #2a2a2a;
+    color: #eee;
+    font-size: 1rem;
+    width: 180px;
+}
+
+button {
+    padding: 8px 20px;
+    border-radius: 6px;
+    border: none;
+    background: #ffcb4c;
+    color: #1a1a1a;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #f1901e;
+    color: #fff;
+}
+
+.lock-btn:hover {
+    background: none;
+    color: #eee;
+}
+
+canvas {
+    width: 512px;
+    height: 512px;
+    border-radius: 8px;
+}
+
+.seed-display {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.sliders {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 400px;
+}
+
+.sliders-label {
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 2px;
+    text-align: center;
+}
+
+.slider-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 24px;
+}
+
+.slider-row label {
+    width: 110px;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.slider-row input[type="range"] {
+    flex: 1;
+    accent-color: #ffcb4c;
+}
+
+.slider-row .value {
+    width: 36px;
+    font-size: 0.85rem;
+    color: #eee;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.lock-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0;
+    width: 18px;
+    flex-shrink: 0;
+    opacity: 0.3;
+    line-height: 1;
+    color: #eee;
+    transition: opacity 0.1s;
+}
+
+.lock-btn:hover, .lock-btn.locked {
+    opacity: 1;
+}
